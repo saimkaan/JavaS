@@ -172,7 +172,7 @@ public class LinkedList {
 	public void insertSorted(int value) {
 		Node n = first;
 		int zaehler = 0;
-		int platzhalter = 0;
+		int platzhalter;
 
 		for (; n != null; n = n.next)
 			zaehler++;
