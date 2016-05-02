@@ -1,0 +1,329 @@
+Als    Binärbaum bezeichnet man in der Graphentheorie eine spezielle Form eines Graphen. Genauer gesagt handelt es sich um einen Wurzelbaum (gewurzelten Baum), bei dem jeder Knoten höchstens zwei Kindknoten besitzt. Meist wird verlangt, dass sich die Kindknoten eindeutig in linkes und rechtes Kind einteilen lassen. Ein anschauliches Beispiel für einen solchen Binärbaum ist die Ahnentafel. Hierbei sind allerdings die Elternteile die Kindknoten.
+
+Ein Binärbaum ist entweder leer, oder er besteht aus einer Wurzel mit einem linken und rechten Teilbaum, die wiederum Binärbäume sind. (Ist ein Teilbaum leer, bezeichnet man den entsprechenden Kindknoten als fehlend.)
+Inhaltsverzeichnis
+ [Verbergen] 
+
+    1 Weitere Begriffe
+    2 Anwendungen
+        2.1 Binärer Suchbaum
+        2.2 Partiell geordneter Baum
+        2.3 Vollständig balancierter Binärbaum
+        2.4 Weitere Binärbäume
+    3 Zugriff per Index
+        3.1 In-Order-Index
+        3.2 Links/Rechts-Index
+        3.3 Repräsentation durch ein Array
+    4 Traversierung
+        4.1 Rekursive Implementierungen
+        4.2 Iterative Implementierung
+        4.3 Abstieg zum ersten oder letzten Element
+    5 Einfügen, Einfügepunkt
+    6 Löschen
+        6.1 Pseudocode
+    7 Rotation in binären Bäumen
+        7.1 Komplexität
+    8 Siehe auch
+    9 Literatur
+    10 Anmerkungen
+
+Weitere Begriffe [Bearbeiten]
+
+Ein Binärbaum heißt geordnet, wenn jeder innere Knoten ein linkes und eventuell zusätzlich ein rechtes Kind besitzt (und nicht etwa nur ein rechtes Kind), sowie der linke Knoten „kleiner“, der rechte Knoten „größer“ als der Betrachtungsknoten ist. Man bezeichnet ihn als voll, wenn jeder Knoten entweder Blatt ist (also kein Kind besitzt), oder aber zwei (also sowohl ein linkes wie ein rechtes) Kinder besitzt – es also kein Halbblatt gibt. Für die Eigenschaft voll werden gelegentlich auch die Begriffe saturiert oder strikt verwendet. Man bezeichnet volle Binärbäume als vollständig, wenn alle Blätter die gleiche Tiefe haben, wobei die Tiefe eines Knotens als die Anzahl der Bögen bis zur Wurzel definiert ist.
+
+Die Höhe eines Wurzelbaums ist die maximal auftretende Tiefe. Viele Autoren setzen sie aber um 1 höher, da man so dem leeren Baum die Höhe 0 und dem nur aus der Wurzel bestehenden Baum die Höhe 1 geben kann, was gewisse rekursive Definitionen kürzer zu fassen gestattet. (Und da Tiefe ein Attribut eines Knotens, Höhe aber eines des ganzen Baums ist, muss es nicht unbedingt Verwirrungen geben.) In diesem Artikel sei die letztere Definition durchgehalten.
+
+Induktiv lässt sich zeigen, dass ein vollständiger Binärbaum der Höhe h (h ≥ 1), den man häufig auch als Bh bezeichnet, genau
+
+    2h-1 Knoten,
+    2h-1-1 innere Knoten (nicht Blatt, aber evtl. Wurzel),
+    2t Knoten in Tiefe t (0 ≤ t ≤ h-1), insbesondere also
+    2h-1 Blätter
+
+besitzt. Eine Darstellung eines Binärbaumes, in dem die Knoten mit rechtwinkligen Dreiecken und die Bögen mit Rechtecken dargestellt werden, nennt man pythagoreischen Binärbaum.
+
+Der Binärbaum ist entartet, wenn jeder Knoten entweder Blatt ist (Anzahl Kinder ist 0) oder „Halb-Blatt“ (Anzahl Kinder ist 1). (Das Halbblatt kommt nur bei Binärbäumen vor und ist der Definition gemäß eine Sorte innerer Knoten; es lohnt sich jedoch – auch für die Beschreibung der Operationen –, einen separaten Begriff zur Verfügung zu haben.) In diesem Fall stellt der Baum eine Liste dar. Besondere Formen sind die geordneten Listen, bei denen ein Baum jeweils nur aus linken oder nur aus rechten Kindern besteht.
+Anwendungen [Bearbeiten]
+Binärer Suchbaum [Bearbeiten]
+
+Die in der Praxis wohl wichtigste Anwendung der Binärbäume sind die binären Suchbäume, worunter die AVL-Bäume, Rot-Schwarz-Bäume und Splay-Bäume zu rechnen sind. Bei Suchbäumen gibt es „Schlüssel“ in den Knoten, nach denen diese „linear“ im Suchbaum geordnet sind. Auf dieser Ordnung basiert dann ein möglichst effizientes Suchen.
+Partiell geordneter Baum [Bearbeiten]
+
+Ein partiell geordneter Baum T ist ein spezieller Baum,
+
+    dessen Knoten markiert sind
+    dessen Markierungen aus einem geordneten Wertebereich stammen
+    in dem für jeden Teilbaum T' mit der Wurzel x gilt: Alle Knoten aus T' sind größer markiert als x oder gleich x.
+
+Intuitiv bedeutet dies: Die Wurzel jedes Teilbaumes stellt ein Minimum für diesen Teilbaum dar. Die Werte des Teilbaumes nehmen in Richtung der Blätter zu oder bleiben gleich.
+
+Derartige Bäume werden häufig in Heaps verwendet.
+Vollständig balancierter Binärbaum [Bearbeiten]
+
+Ein vollständig balancierter Binärbaum ist ein voller Binärbaum, bei dem die Abstände zweier beliebiger Blätter von der Wurzel um höchstens 1 voneinander abweichen. Ein vollständiger Binärbaum ist ein vollständig balancierter Binärbaum. (Siehe auch Balancierter Baum oder AVL-Baum.)
+Weitere Binärbäume [Bearbeiten]
+
+Auch Fibonacci-Bäume und binäre Heaps basieren auf Binärbäumen.
+Zugriff per Index [Bearbeiten]
+In-Order-Index [Bearbeiten]
+
+Wird in jedem Knoten die Anzahl der Elemente des zugehörigen Unterbaums gehalten, kann das Aufsuchen eines Elements vermöge seines in-order-Index in ganz ähnlicher Weise wie das Aufsuchen mit einem Schlüssel im binären Suchbaum bewerkstelligt werden. Dies hat allerdings die nachteilige Implikation, dass Einfüge- und Löschoperation immer Korrekturen bis hinauf zur Wurzel erfordern, womit sich dann auch die in-order-Indizes von Knoten ändern. Die Vorgehensweise dürfte also bei nicht statischen Binärbäumen von fraglichem Wert sein, und bei statischen ist der gewöhnliche Array-Index in Bezug auf Laufzeit überlegen.
+
+Der Aufwand ist O(h), wo h die Höhe des Baums ist.
+Links/Rechts-Index [Bearbeiten]
+
+Jeder Knoten kann durch eine variabel lange Kette von Binärziffern genau spezifiziert werden. Die Maßgabe könnte folgendermaßen lauten:
+
+    Eine „0“ am Anfang (gleichzeitig Ende) entspricht dem leeren Binärbaum.
+    Eine „1“ am Anfang lässt auf die Wurzel zugreifen.
+    Eine anschließende „0“ bzw. „1“ lässt auf das linke bzw. rechte Kind zugreifen.
+
+Jedem Knoten in einem Binärbaum kann so eindeutig eine Binärkette zugeordnet werden.
+
+Bei höhen-balancierten Bäumen ist die Binärkette in ihrer Länge durch O(log(n)) beschränkt, so dass sie in ein vorzeichenloses Integer passen mag. Eine denkbare Codierung der variablen Länge in einem Wort fester Länge lässt die Binärkette nach der ersten „1“ beginnen.
+
+Der maximale Aufwand für einen Zugriff ist O(h).
+Binärbaum mit Array- indizes an den Knoten
+Repräsentation durch ein Array [Bearbeiten]
+
+Ein Binärbaum kann durch ein Array repräsentiert werden, dessen Länge im Wesentlichen der Anzahl der Knoten des Baumes entspricht, genauer: 2h–1 mit h als der Höhe des Baumes. Die Indizierung beginnt bei 1 mit Verweis auf die Wurzel. Dann setzt sie sich „zeilenweise“ fort: alle Knoten derselben Tiefe werden von links nach rechts fortlaufend nummeriert. Das heißt: das Auslesen des Arrays von links entspricht einem Level-Order-Traversal (oder Breadth-First-Traversal) des Baums. Falls der Binärbaum nicht voll besetzt ist, müssen ausgelassene Knoten durch Platzhalter besetzt werden, so dass also 2h–1–n Speicherzellen verschwendet werden.
+Beispiel für die implizite Darstellung von einem Binärbaum in einem Array.
+
+Diese Nummerierung hat die angenehme Eigenschaft, dass man leicht die Indizes der verbundenen Knoten berechnen kann. Im Array A sei Ai ein Knoten, dann ist A2i sein linkes und A2i+1 sein rechtes Kind; die abgerundete Hälfte j = \lfloor \tfrac{i}{2} \rfloor \, verweist auf den Vater Aj. Analog zu einer Indizierung beginnend bei 1 lässt sich das Schema auch auf eine Indizierung beginnend mit 0 anpassen.
+
+In der Genealogie ist dieses Indizierungsschema auch unter dem Begriff Kekule-Nummerierung bekannt.
+
+Da bei der Abbildung von einem Binären Baum in ein Array keine expliziten Zeiger auf Kinder bzw. Elter-Knoten notwendig sind, wird diese Datenstruktur auch als implizite Datenstruktur bezeichnet.
+
+Eine Anwendung dieser Darstellung ist der binäre Heap, der für die Sortierung von Elementen verwendet wird.
+Traversierung [Bearbeiten]
+
+Traversierung bezeichnet das systematische Untersuchen der Knoten des Baumes in einer bestimmten Reihenfolge. Ein Spezialfall ist die Linearisierung, bei der die Elemente in der Reihenfolge der Traversierung in eine Liste eingefügt werden.
+
+Es gibt verschiedene Möglichkeiten, die Knoten von Binärbäumen zu durchlaufen. Man unterscheidet:
+
+    pre-order (auch depth-first) oder Hauptreihenfolge (auch Tiefensuche) (W–L–R): Zuerst wird die Wurzel (W) betrachtet und anschließend der linke (L), schließlich der rechte (R) Teilbaum durchlaufen.
+    post-order oder Nebenreihenfolge (L–R–W): Zuerst wird der linke (L), dann der rechte (R) Teilbaum durchlaufen und schließlich die Wurzel (W) betrachtet.
+
+    in-order oder symmetrische Reihenfolge (L–W–R): Zuerst wird der linke (L) Teilbaum durchlaufen, dann die Wurzel (W) betrachtet und schließlich der rechte (R) Teilbaum durchlaufen.
+    reverse in-order oder anti-symmetrische Reihenfolge (R–W–L): Zuerst wird der rechte (R) Teilbaum durchlaufen, dann die Wurzel (W) betrachtet und schließlich der linke (L) Teilbaum durchlaufen.
+    level-order (auch breadth-first, deutsch Breitensuche): Beginnend bei der Baumwurzel werden die Ebenen von links nach rechts durchlaufen.
+
+Rekursive Implementierungen [Bearbeiten]
+
+preOrder( knoten ) {
+
+    print( knoten )
+
+    if knoten.links ≠ null then
+        preOrder( knoten.links )
+
+    if knoten.rechts ≠ null then
+        preOrder( knoten.rechts )
+}
+
+postOrder( knoten ) {
+
+    if knoten.links ≠ null then
+        postOrder( knoten.links )
+
+    if knoten.rechts ≠ null then
+        postOrder( knoten.rechts )
+
+    print( knoten )
+}
+
+inOrder( knoten ) {
+
+    if knoten.links ≠ null then
+        inOrder( knoten.links )
+
+    print( knoten )
+
+    if knoten.rechts ≠ null then
+        inOrder( knoten.rechts )
+}
+
+Eine Traversierung über den ganzen Baum umfasst pro Knoten genau einen Aufruf einer der rekursiven Traversierungs-Funktionen. Der Aufwand bei n Knoten ist also n \in \Theta(n).
+Iterative Implementierung [Bearbeiten]
+
+Implementierungen, die nur einen einzelnen Querungs-Schritt vollziehen, sind in der Praxis fast noch wichtiger. Sie ermöglichen, Anfang und Ende der Traversierung in einer Programmschleife direkt auszuprogrammieren.
+
+Als Beispiel sei hier nur die in-order-Traversierung gezeigt, die insbesondere bei binären Suchbäumen eine große Rolle spielt, da diese Reihenfolge der Sortier-Reihenfolge entspricht.
+
+inOrderNext( knoten, richtung ) {
+    // richtung  =  nachRechts („in-order“)  oder  nachLinks („reverse in-order“)
+
+    knotenY = knoten.kind[richtung]         // 1 Schritt in die gegebene Richtung
+    if knotenY ≠ null then {
+        richtung = 1 - richtung             // spiegele  Links <-> Rechts
+        // Abstieg zu den Blättern über Kinder in der gespiegelten Richtung
+        knotenZ = knotenY.kind[richtung]
+        while knotenZ ≠ null {
+            knotenY = knotenZ 
+            knotenZ = knotenY.kind[richtung]
+        } 
+        return knotenY
+    }
+    // Aufstieg zur Wurzel über Vorfahren der gegebenen Richtung
+    knotenY = knoten
+    do {
+        knotenZ = knotenY
+        knotenY = knotenZ.vater
+        if knotenY = null return knotenY    // (knotenZ ist die Wurzel:)
+                             // d.h. es gibt kein Element mehr in dieser Richtung
+    } until knotenZ ≠ knotenY.kind[richtung]
+    // knotenY ist der erste Vorfahr in der gespiegelten Richtung ==> Ergebnis
+    return knotenY
+}
+
+Eine Traversierung über den ganzen Baum beinhaltet pro Bogen einen Abstieg (in der Richtung des Bogens) und einen Aufstieg (in der Gegenrichtung). Ein Baum mit n Knoten hat n–1 Bögen, so dass eine Gesamttraversierung über { \color{Blue} 2 n-2 \in \Theta(n)} Stufen geht. Der Aufwand für eine Einzel-Traversierung ist also im Mittel in O(1) und im schlechtesten Fall in O(h) mit h als der Höhe des Baums.
+Abstieg zum ersten oder letzten Element [Bearbeiten]
+
+Ganz ähnlich wie eine Einzel-Traversierung funktioniert die Suche nach dem ersten oder letzten Element.
+
+firstLast( binärBaum, richtung ) {
+    // richtung  =  Links (erstes)  oder  Rechts (letztes)
+
+    knotenY = binärBaum.wurzel
+    if knotenY = null then return binärBaum     // der leere Baum
+
+    // Abstieg zu den Blättern
+    do {
+        knotenZ = knotenY
+        knotenY = knotenZ.kind[richtung]
+    } until knotenY = null
+    return knotenZ
+}
+
+Der Aufwand ist O(h), wo h die Höhe des Baums ist.
+Einfügen, Einfügepunkt [Bearbeiten]
+
+Es sei angenommen, dass die Navigation zu einem Einfügepunkt bereits erfolgt ist. Einfügepunkt bedeutet einen Knoten und eine Richtung (rechts bzw. links). Ein unmittelbarer Einfügepunkt in einem binären Baum ist immer ein rechtes (bzw. linkes) Halb-Blatt, ein mittelbarer ist der unmittelbare Nachbar in der angegebenen Richtung und spezifiziert zusammen mit der Gegenrichtung dieselbe Stelle im Binärbaum – zum echten Einfügen muss aber die Einfügefunktion noch bis zu dem Halbblatt hinabsteigen, welches den unmittelbaren Einfügepunkt darstellt.
+
+Zum Einfügen lässt man das Kind auf der geforderten Richtung des Knotens auf das neue Element verweisen, damit ist dieses korrekt eingefügt. Die Komplexität der Einfügeoperation ist somit konstant.
+
+Nach dem Einfügen ist das neue Element ein Blatt des Binärbaums.
+
+Im folgenden Beispiel wird ein Knoten mit dem Schlüssel „J“ in einen binären Baum am Einfügepunkt („M“, links) eingefügt.
+
+           S                            S
+          / \                          / \
+         /   \                        /   \
+        G     W                      G     W
+       / \                          / \
+      /   \           ==>          /   \
+     D     M                      D     M
+    / \     \                    / \   / \
+   B   F     P                  B   F J   P
+
+Durch wiederholtes Einfügen an immer derselben Stelle kann es dazu kommen, dass der Baum zu einer linearen Liste entartet.
+Löschen [Bearbeiten]
+
+Beim Löschen muss man deutlich mehr Fälle unterscheiden. Wichtig ist z. B., wie viele Kinder der Knoten hat.
+
+Fall A: Zu löschender Knoten hat höchstens ein Kind.
+
+Ist der Knoten ein Blatt (Knoten ohne Kinder), dann wird beim Löschen einfach der Knoten entfernt. Hat der zu löschende Knoten genau ein Kind, wird dieses an die Stelle des zu löschenden Knotens gesetzt.
+
+Fall B: Zu löschender Knoten hat zwei Kinder.
+
+In diesem Fall kann die Löschung sowohl über den linken wie über den rechten Teilbaum vollzogen werden. Um die in-order-Reihenfolge aufrechtzuerhalten, ist aber ein Abstieg bis zu einem Halbblatt unvermeidlich.
+
+Eine Möglichkeit ist, den linken Teilbaum an die Position zu setzen, an der der zu löschende Knoten war, und den rechten Teilbaum an den linken an dessen rechtester Stelle anzuhängen, wie es das Beispiel zeigt („G“ soll gelöscht werden):
+
+           S                           S
+          / \                         / \
+         /   \                       /   \
+        G     W                     D     W
+       / \                         / \
+      /   \            ==>        /   \
+     D     M                     B     F
+    / \   / \                           \
+   B   F J   P                           M
+                                        / \
+                                       J   P
+
+Die Veränderungen in den Höhen fallen jedoch kleiner aus, wenn der zu löschende Knoten durch einen (unmittelbaren) Nachbarn (in der in-order-Reihenfolge) ersetzt wird. Im Beispiel ist „F“ der linke Nachbar von „G“, steht also im linken Teilbaum ganz rechts; „J“ ist der rechte Nachbar von „G“, steht also im rechten Teilbaum ganz links. Die in-order-Reihenfolge ist „F“ – „G“ – „J“. Der rechte Nachbar kann einen rechten Teilbaum haben, der an die Stelle gehängt werden muss, wo der Nachbar war.
+
+Im folgenden Beispiel wird der zu löschende Knoten „G“ durch seinen rechten Nachbarn „J“ ersetzt:
+
+            S                             S
+           / \                           / \
+          /   \                         /   \
+         G     W                       J     W
+        / \                           / \
+       /   \                         /   \
+      D     M          ==>          D     M
+     / \   / \                     / \   / \
+    B   F J   P                   B   F K   P
+           \
+            K
+
+Um dem Baum möglichst wenig Gelegenheit zu geben, einseitig zu werden, kann man systematisch zwischen linkem und rechtem Abstieg abwechseln. Stehen Balance-Werte zur Verfügung, liegt es nahe, den Abstieg auf der evtl. höheren Seite zu bevorzugen.
+
+Durch wiederholtes Löschen kann es dazu kommen, dass der Baum zu einer linearen Liste entartet.
+
+Wegen der unvermeidlichen Abstiege bis zu den Halb-Blättern ist die Komplexität der Löschoperation im schlechtesten Fall O(h), wobei h die Höhe des Baumes ist. Da der Abstieg einer Einzel-Traversierung entspricht und Abstiege in einer Gesamttraversierung gleich häufig sind wie Aufstiege, konvergiert der Mittelwert der abzusteigenden Ebenen für wachsende Anzahl der Knoten genau gegen 1.
+Pseudocode [Bearbeiten]
+
+Die Abbildungen und der Pseudocode zeigen das Entfernen eines Elements, das zwei Kinder und einen nahen Enkel besitzt, aus einem binären Baum.
+
+    Ein Binärbaum bei dem der Knoten 5 gelöscht werden soll
+
+    Der neue Baum
+
+remove( binärBaum, knoten ) {
+    // Es sei angenommen, dass knoten.links ≠ null, knoten.rechts ≠ null
+    // und knoten.rechts.links ≠ null
+
+    knotenY = knoten.rechts
+    while knotenY ≠ null {
+        knotenZ = knotenY
+        knotenY = knotenZ.links
+    } 
+    // knotenZ ist der rechte Nachbar von knoten
+    if knotenZ.rechts ≠ null then knotenZ.rechts.vater = knotenZ.vater
+    knotenZ.vater.links = knotenZ.rechts
+    knotenZ.rechts = knoten.rechts
+    knoten.rechts.vater = knotenZ
+    knotenZ.links = knoten.links
+    knoten.links.vater = knotenZ         // knoten.links ≠ null
+    if knoten.vater.links = knoten
+        then knoten.vater.links = knotenZ
+        else knoten.vater.rechts = knotenZ
+    knotenZ.vater = knoten.vater
+}
+
+Rotation in binären Bäumen [Bearbeiten]
+
+Rotationen dienen dazu, um Bedingungen von binären Bäumen, insbesondere Höhen von Teilbäumen (bspw. in Rot-Schwarz-Bäumen und AVL-Bäumen) oder Suchtiefen von Knoten (bspw. in Splay-Bäumen), anzupassen. Sie ändern nicht die in-order-Reihenfolge, also ist nach ihrer Anwendung der Baum hinsichtlich der Reihenfolge äquivalent.
+
+Gelegentlich werden auch Doppel- und Dreifachrotationen benötigt.
+
+             W                                  S
+            / \        Right-Rotate(S,W)       / \
+           /   \           -------->          /   \
+          S     Y                            G     W
+         / \               <--------              / \
+        /   \          Left-Rotate(W,S)          /   \
+       G     U                                  U     Y
+
+Erklärung zu Right-Rotate(S,W)
+
+„W“ mit rechtem Teilbaum wird zum rechten Teilbaum von „S“. Der ursprüngliche rechte Teilbaum „U“ von „S“ wird zum linken Teilbaum von „W“. Der rechte Teilbaum „Y“ von „W“ bleibt an seiner Position.
+
+Erklärung zu Left-Rotate(W,S)
+
+„S“ mit linkem Teilbaum wird zum linken Teilbaum von „W“. Der ursprüngliche linke Teilbaum „U“ von „W“ wird zum rechten Teilbaum von „S“. Der rechte Teilbaum „Y“ von „W“ bleibt an seiner Position.
+Komplexität [Bearbeiten]
+
+Rotationen benötigen konstante Laufzeit O(1).
+Siehe auch [Bearbeiten]
+
+    Binärer Suchbaum
+    H-Baum
+
+Literatur [Bearbeiten]
+
+    Donald Knuth. The art of computer programming vol 1. Fundamental Algorithms, Dritte Auflage. Addison-Wesley, 1997. ISBN 0-201-89683-4. Abschnitt 2.3, (S. 318ff).
