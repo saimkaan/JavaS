@@ -28,7 +28,11 @@ public class App {
         System.out.println(mySet1);
         System.out.println(mySet1.size());
 
-        System.out.println("----------------------");
+        System.out.println("");
+        System.out.println("-----------------");
+        System.out.println("| Next Document |");
+        System.out.println("-----------------");
+        System.out.println("");
 
         System.out.println(mySet2);
         System.out.println(mySet2.size());
