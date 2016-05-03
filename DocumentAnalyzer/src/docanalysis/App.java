@@ -1,7 +1,5 @@
 package docanalysis;
 
-import javafx.scene.effect.SepiaTone;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;
@@ -39,15 +37,6 @@ public class App {
         System.out.println(mySet2.removeAll(myStop));
         System.out.println(mySet2);
         System.out.println(mySet2.size());
-
-
-
-
-
-
-
-
-
 
     }
 
