@@ -1,56 +1,53 @@
 package docanalysis;
 
+import javafx.scene.effect.SepiaTone;
+
 import java.io.File;
-import java.text.BreakIterator;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by saim on 02/05/16.
  */
 public class App {
-    static void Ausgabe( String s, BreakIterator iter )
-    {
-        iter.setText( s );
+    public static void main(String[] args) throws IOException {
+        File file1 = new File("DocumentAnalyzer/documents/Hashfunktion.txt");
+        File file2 = new File("DocumentAnalyzer/documents/Binärbaum.txt");
+        File stopF = new File("DocumentAnalyzer/StopWords.txt");
 
-        for ( int last = iter.first(),next = iter.next();
-              next != BreakIterator.DONE;
-              last = next, next = iter.next() )
-        {
-            CharSequence part = s.subSequence( last, next );
+        Set<String> mySet1 = new HashSet<String>(SimpleTokenizer.getTokens(file1, "UTF-8"));
+        Set<String> mySet2 = new HashSet<String>(SimpleTokenizer.getTokens(file2, "UTF-8"));
 
-            if ( Character.isLetterOrDigit( part.charAt( 0 ) ) )
-                System.out.println( part );
-        }
-    }
-
-    public static void main(String[] args) {
-
-//        File input =  new File("DocumentAnalyzer/documents/Hashfunktion.txt");
-
-        
-        String Txt1 = "Als Binärbaum bezeichnet man in der Graphentheorie eine spezielle Form eines Graphen. Genauer gesagt handelt es sich um einen Wurzelbaum (gewurzelten Baum), bei dem jeder Knoten höchstens zwei Kindknoten besitzt. Meist wird verlangt, dass sich die Kindknoten eindeutig in linkes und rechtes Kind einteilen lassen. Ein anschauliches Beispiel für einen solchen Binärbaum ist die Ahnentafel. Hierbei sind allerdings die Elternteile die Kindknoten.\n",
-                Txt2 = "Eine Hashfunktion oder Streuwertfunktion ist eine Abbildung, die zu jeder Eingabe aus einer oft sehr großen Quellmenge eine Ausgabe aus einer kleineren Zielmenge erzeugt, den sogenannten Hashcode (oder Hashwert).\n";
-
-        BreakIterator WordInstance = BreakIterator.getWordInstance();
-        BreakIterator SentenceInstance = BreakIterator.getSentenceInstance();
-        BreakIterator LineInstance = BreakIterator.getLineInstance();
-
-//        SimpleTokenizer.getTokens(input, );   Ich komme nicht auf den richtigen Ansatz
+        Set<String> myStop = new HashSet<String>(SimpleTokenizer.getTokens(stopF, "UTF-8"));
 
 
-        System.out.println("------WordInstance------");
+        System.out.println(mySet1);
+        System.out.println(mySet1.size());
+        System.out.println(myStop);
+        System.out.println("----------------------");
+        System.out.println(mySet1.removeAll(myStop));
+        System.out.println(mySet1);
+        System.out.println(mySet1.size());
 
-        Ausgabe(Txt1, WordInstance);
-        Ausgabe(Txt2, WordInstance);
+        System.out.println("----------------------");
 
-        System.out.println("------SentenceInstance------");
+        System.out.println(mySet2);
+        System.out.println(mySet2.size());
+        System.out.println(myStop);
+        System.out.println("----------------------");
+        System.out.println(mySet2.removeAll(myStop));
+        System.out.println(mySet2);
+        System.out.println(mySet2.size());
 
-        Ausgabe(Txt1, SentenceInstance);
-        Ausgabe(Txt2, SentenceInstance);
 
-        System.out.println("------LineInstance------");
 
-        Ausgabe(Txt1, LineInstance);
-        Ausgabe(Txt2, LineInstance);
+
+
+
+
+
+
 
     }
 
