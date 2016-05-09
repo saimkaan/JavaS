@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Dictionary/Dictionary.iml" filepath="$PROJECT_DIR$/Dictionary/Dictionary.iml" />
       <module fileurl="file://$PROJECT_DIR$/DocumentAnalyzer/DocumentAnalyzer.iml" filepath="$PROJECT_DIR$/DocumentAnalyzer/DocumentAnalyzer.iml" />
       <module fileurl="file://$PROJECT_DIR$/JavaS.iml" filepath="$PROJECT_DIR$/JavaS.iml" />
       <module fileurl="file://$PROJECT_DIR$/LinkedList/LinkedList.iml" filepath="$PROJECT_DIR$/LinkedList/LinkedList.iml" />
