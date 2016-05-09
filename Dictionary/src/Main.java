@@ -22,9 +22,11 @@ public class Main {
         Scanner keyboard = new Scanner(System.in);
         String input;
 
+        System.out.println("Wort in die Konsole eingeben.\n\n" +
+                "Zum beenden exit eingeben.\n--------------------------------");
+
+
         do {
-            System.out.println("Wort in die Konsole eingeben.\n\n" +
-                               "Zum beenden exit eingeben.\n--------------------------------");
 
             input = keyboard.nextLine();
             input = input.toLowerCase();
