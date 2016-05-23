@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
         HashMap<String, String> map = new HashMap<>();
 
         map.put("auto", "car");
@@ -17,17 +16,13 @@ public class Main {
         map.put("buch", "book");
         map.put("haus", "house");
 
-
-
         Scanner keyboard = new Scanner(System.in);
         String input;
 
         System.out.println("Wort in die Konsole eingeben.\n\n" +
                 "Zum beenden exit eingeben.\n--------------------------------");
 
-
         do {
-
             input = keyboard.nextLine();
             input = input.toLowerCase();
             input = input.replace(" ","");
@@ -39,6 +34,6 @@ public class Main {
             else {
                 System.err.println("Wort wurde nicht im dictionary gefunden!!!");
             }
-        }while (! input.equalsIgnoreCase("exit") );
+        }while (!input.equalsIgnoreCase("exit") );
     }
 }
