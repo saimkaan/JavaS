@@ -5,6 +5,7 @@ import java.text.RuleBasedCollator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * Ein Telefonbuch ist hier eine Liste von {@link PhoneBookEntry}-Instanzen - deshalb wird
@@ -17,7 +18,7 @@ import java.util.Comparator;
 public class PhoneBook extends ArrayList<PhoneBookEntry> {
 
 	private static final long serialVersionUID = 6778986065452834344L;
-	
+
 	public void sortByLastName() {
 		
 		final Collator collator = RuleBasedCollator.getInstance();
@@ -43,5 +44,32 @@ public class PhoneBook extends ArrayList<PhoneBookEntry> {
 		};
 		Collections.sort(this, firstNameComparator);
 	}
+
+//	public List<PhoneBookEntry> search(String lastName, String firstName){
+//
+//		List<PhoneBookEntry> tmp = new ArrayList<>();
+//
+//		if (firstName == null)
+//			return searchlastName(lastName, tmp);
+//
+//		return tmp;
+//	}
+//
+//	private List<PhoneBookEntry> searchlastName(String firstName){
+//		int binarySearch = Collections.binarySearch(this, new PhoneBookEntry(lastName));
+//		List<PhoneBookEntry> tmp;
+//		if(binarySearch == -1)
+//			return tmp;
+//		if (!tmp.contains(this.get(binarySearch))){
+//			tmp.add(this.get(binarySearch));
+//			return searchlastName(lastName,  tmp);
+//		}
+//		else {
+//			return tmp;
+//		}
+//		PhoneBookEntry phoneBookEntry = this.get(binarySearch);
+//
+//		return tmp;
+//	}
 
 }

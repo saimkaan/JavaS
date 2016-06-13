@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AddressBook/AddressBook.iml" filepath="$PROJECT_DIR$/AddressBook/AddressBook.iml" />
       <module fileurl="file://$PROJECT_DIR$/BinSuche/BinSuche.iml" filepath="$PROJECT_DIR$/BinSuche/BinSuche.iml" />
       <module fileurl="file://$PROJECT_DIR$/Binaerbaum/Binaerbaum.iml" filepath="$PROJECT_DIR$/Binaerbaum/Binaerbaum.iml" />
       <module fileurl="file://$PROJECT_DIR$/Dictionary/Dictionary.iml" filepath="$PROJECT_DIR$/Dictionary/Dictionary.iml" />

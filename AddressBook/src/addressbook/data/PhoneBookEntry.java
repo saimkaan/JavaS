@@ -2,7 +2,7 @@ package addressbook.data;
 
 import java.io.Serializable;
 
-public class PhoneBookEntry implements Serializable {
+public class PhoneBookEntry implements Serializable, Comparable<PhoneBookEntry>{
 	
 	private static final long serialVersionUID = -8058338785123813588L;
 	private String firstName, lastName;
@@ -67,4 +67,8 @@ public class PhoneBookEntry implements Serializable {
 				+ ", number=" + number + "]";
 	}
 
+	@Override
+	public int compareTo(PhoneBookEntry other) {
+		return this.lastName.compareTo(other.getLastName());
+	}
 }
