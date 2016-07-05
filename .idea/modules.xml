@@ -5,11 +5,22 @@
       <module fileurl="file://$PROJECT_DIR$/AddressBook/AddressBook.iml" filepath="$PROJECT_DIR$/AddressBook/AddressBook.iml" />
       <module fileurl="file://$PROJECT_DIR$/BinSuche/BinSuche.iml" filepath="$PROJECT_DIR$/BinSuche/BinSuche.iml" />
       <module fileurl="file://$PROJECT_DIR$/Binaerbaum/Binaerbaum.iml" filepath="$PROJECT_DIR$/Binaerbaum/Binaerbaum.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DesignPatterns/DesignPatterns.iml" filepath="$PROJECT_DIR$/DesignPatterns/DesignPatterns.iml" />
       <module fileurl="file://$PROJECT_DIR$/Dictionary/Dictionary.iml" filepath="$PROJECT_DIR$/Dictionary/Dictionary.iml" />
       <module fileurl="file://$PROJECT_DIR$/DocumentAnalyzer/DocumentAnalyzer.iml" filepath="$PROJECT_DIR$/DocumentAnalyzer/DocumentAnalyzer.iml" />
       <module fileurl="file://$PROJECT_DIR$/Fibo/Fibo.iml" filepath="$PROJECT_DIR$/Fibo/Fibo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JUnit/JUnit.iml" filepath="$PROJECT_DIR$/JUnit/JUnit.iml" />
       <module fileurl="file://$PROJECT_DIR$/JavaS.iml" filepath="$PROJECT_DIR$/JavaS.iml" />
       <module fileurl="file://$PROJECT_DIR$/LinkedList/LinkedList.iml" filepath="$PROJECT_DIR$/LinkedList/LinkedList.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ListenerDemo/ListenerDemo.iml" filepath="$PROJECT_DIR$/ListenerDemo/ListenerDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RaceConditionDemo/RaceConditionDemo.iml" filepath="$PROJECT_DIR$/RaceConditionDemo/RaceConditionDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Recursion/Recursion.iml" filepath="$PROJECT_DIR$/Recursion/Recursion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SearchFiles/SearchFiles.iml" filepath="$PROJECT_DIR$/SearchFiles/SearchFiles.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sort/Sort.iml" filepath="$PROJECT_DIR$/Sort/Sort.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Threads/Threads.iml" filepath="$PROJECT_DIR$/Threads/Threads.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ThreadsDemo/ThreadsDemo.iml" filepath="$PROJECT_DIR$/ThreadsDemo/ThreadsDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lambda/lambda.iml" filepath="$PROJECT_DIR$/lambda/lambda.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lambdas/lambdas.iml" filepath="$PROJECT_DIR$/lambdas/lambdas.iml" />
     </modules>
   </component>
 </project>
